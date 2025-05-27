@@ -7,12 +7,21 @@
   },
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "body-parser": "^2.2.0",
     "compilex": "^0.7.4",
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "nodemon": "^3.1.10"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chaitanya1-stack/online_compiler.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/chaitanya1-stack/online_compiler/issues"
+  },
+  "homepage": "https://github.com/chaitanya1-stack/online_compiler#readme",
+  "description": ""
 }
