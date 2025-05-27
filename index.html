@@ -150,11 +150,8 @@
       };
 
       try {
-        const response = await fetch("http://localhost:3000/compile", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(codeData),
-        });
+       const BASE_URL = "https://online-compiler-rvud.onrender.com";
+
 
         if (!response.ok) {
           const errorData = await response.json();

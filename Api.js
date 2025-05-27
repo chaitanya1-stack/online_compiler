@@ -4,8 +4,10 @@ const bodyP = require("body-parser");
 const fs = require("fs");
 const { exec } = require("child_process");
 const crypto = require("crypto");
+const cors = require("cors");
 
 const app = express();
+app.use(cors());
 app.use(bodyP.json());
 app.use(express.static(__dirname)); // Serve index.html and static files
 app.use((req, res, next) => {
