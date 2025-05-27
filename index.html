@@ -138,41 +138,49 @@
     });
 
     run.addEventListener("click", async function () {
-      if (!option.value) {
-        alert("Please select a programming language");
-        return;
-      }
+  if (!option.value) {
+    alert("Please select a programming language");
+    return;
+  }
 
-      const codeData = {
-        code: editor.getValue(),
-        input: input.value,
-        lang: option.value,
-      };
+  const codeData = {
+    code: editor.getValue(),
+    input: input.value,
+    lang: option.value,
+  };
 
-      try {
-       const BASE_URL = "https://online-compiler-rvud.onrender.com";
+  try {
+    const BASE_URL = "https://online-compiler-rvud.onrender.com";
 
-
-        if (!response.ok) {
-          const errorData = await response.json();
-          output.value = `Error: ${errorData.error || "Compilation failed"}`;
-          return;
-        }
-
-        const data = await response.json();
-
-        if (data.output) {
-          output.value = data.output;
-        } else if (data.error) {
-          output.value = `Error:\n${data.error}`;
-        } else {
-          output.value = JSON.stringify(data, null, 2);
-        }
-      } catch (err) {
-        output.value = "Error connecting to the server.";
-        console.error(err);
-      }
+    const response = await fetch(`${BASE_URL}/compile`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(codeData),
     });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      output.value = `Error: ${errorData.error || "Compilation failed"}`;
+      return;
+    }
+
+    const data = await response.json();
+
+    if (data.output) {
+      output.value = data.output;
+    } else if (data.error) {
+      output.value = `Error:\n${data.error}`;
+    } else {
+      output.value = JSON.stringify(data, null, 2);
+    }
+  } catch (err) {
+    output.value = "Error connecting to the server.";
+    console.error(err);
+  }
+});
+
   </script>
 </body>
 </html>
